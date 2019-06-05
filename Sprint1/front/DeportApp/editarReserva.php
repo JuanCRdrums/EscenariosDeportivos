@@ -38,12 +38,16 @@
 
 </head>
 <body>
-	
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	
 	
 	<!-- Header section start -->   
 	<header class="header-area">
-		
+		<div class="nav-switch">
+			<i class="fa fa-bars"></i>
+		</div>
 		<div class="phone-number">DeportApp</div>
 		<nav class="nav-menu">
 			<ul>

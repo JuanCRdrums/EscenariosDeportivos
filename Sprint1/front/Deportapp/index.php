@@ -21,6 +21,7 @@
 	<link rel="stylesheet" href="css/animate.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -37,12 +38,17 @@
 
 </head>
 <body>
-	
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 	
 	
 	<!-- Header section start -->   
 	<header class="header-area">
-		
+		<div class="nav-switch">
+			<i class="fa fa-bars"></i>
+		</div>
 		<div class="phone-number">DeportApp</div>
 		<nav class="nav-menu">
 			<ul>
