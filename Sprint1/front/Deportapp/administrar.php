@@ -1,6 +1,39 @@
-<?php
+  <?php
+  	session_start();
+  	session_unset();
+  	session_destroy();
+    if(isset($_POST["submit"]))
+    {
+      require("conexion.php");
+      $idCone = conexion();
+      $Usuario = $_POST["Usuario"];
+      $Clave = $_POST["Pass"];
+      $SQL = "SELECT * FROM administrador WHERE (usuario LIKE '$Usuario') and (pass LIKE '$Clave')";
+      $exito = False;
+      $registro = mysqli_query($idCone,$SQL);
+      $Fila = mysqli_fetch_array($registro);
 
-?>
+
+      header('location: inicioAdmin.php');
+        session_start();
+        $_SESSION["usuario"] = $Usuario;
+
+      /*if($Fila == "")
+      {
+        echo "aja y tu que?";
+        header('Location: administrar.php?mensaje=ERROR: Nombre de usuario y/o contraseña incorrecto');
+      }
+      else
+      {
+      	header('Location: inicioAdmin.php');
+        session_start();
+        $_SESSION["usuario"] = $Usuario;
+        echo "no señor";
+      }*/
+    #mysqli_close($idCone);
+    
+    }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +106,7 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container" align="center">
-			<form action="index.php" method="post">
+			<form action="administrar.php" method="post"> <!--cambiar por inicioAdmin.php-->
 				<div class="row">
 					<div class="col-xs-3">
 						<label for = "usuario"><h4> Usuario:</h4></label> 
