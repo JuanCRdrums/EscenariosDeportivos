@@ -10,7 +10,7 @@
 	<meta name="keywords" content="DeportApp, Escenarios Deportivos, Futbol, Voleibol, UTP">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->   
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+	<link href="img/favi.png" rel="shortcut icon"/>
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
@@ -89,6 +89,16 @@
 					</div>
 				</div>
 				<br>
+				<div class="row">
+					<div class="col-xs-3"> 
+						<label for = "DocInden" ><h4>Documento de Identificación:</h4></label>   
+					</div>
+					<div class="col-xs-3">
+						<br/>
+						<input class="form-control" type="number" id="DocIden" placeholder="Numero de Documento" name="DocIden" required>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-xs-3">
 						<label for = "Dia"><h4>Dia:</h4></label> 

@@ -59,7 +59,7 @@
 	<!-- Page header section start -->
 	<section class="page-header-section set-bg" data-setbg="img/header.jpg">
 		<div class="container">
-			<h1 class="header-title">Buscar Escenarios<span>.</span></h1>
+			<h1 class="header-title">Consultar Reservas<span>.</span></h1>
 		</div>
 	</section>
 	<!-- Page header section end -->
@@ -69,41 +69,77 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container">
-			<table class="table table-hover">
+            <h1>Buscar por:</h1>
+            <form class="form-horizontal" role = "form" method = "post" action="">
+
+                <div class="row">
+                    <div class="col-xs-3">
+                        <label for = "Nombre"><h4> Nombre de la reserva:</h4></label> 
+                    </div>
+                    <div class="col-xs-3">
+                        <br/>
+                        <input class="form-control" type="text" id="Nombre persona" name="Nombre persona" placeholder="Nombre de la Reserva" required> 
+                    </div>
+                    <div class="col-xs-3"> 
+                        <label for = "Telefono" ><h4>Teléfono:</h4></label>   
+                    </div>
+                    <div class="col-xs-3">
+                        <br/>
+                        <input class="form-control" type="number" id="Telefono" placeholder="Teléfono" name="Telefono" required>
+                    </div>
+                </div>
+                <br>
+                <div class = "row">
+					<div class="col-xs-11" align="center">
+						<input type="submit"  class="btn btn-primary" id="submit" name="submit" value="Buscar">
+					</div>
+				</div>
+
+            </form>
+            
+            <table class="table table-hover">
 				<thead>
 					<tr>
-						<th><h1>Nombre</h1></th>
-						<th><h1>Deporte</h1></th>
-						<th><h1>Dirección</h1></th>
-						<th><h1>Teléfono</h1></th>
-						<th><h1>Ciudad</h1></th>
-						<th><h1>Reserva</h1></th>
+						<th><h3>Nombre de Reserva</h3></th>
+						<th><h3>Telefono</h3></th>
+						<th><h3>Documento de Identificacion</h3></th>
+						<th><h3>Dia</h3></th>
+						<th><h3>Pago sitio</h3></th>
+						<th><h3>Pago linea</h3></th>
+                        <th><h3>Editar</h3></th>
+                        <th><h3>Eliminar</h3></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>Nombre 1</td>
-						<td>Deporte 1</td>
-						<td>Teléfono 1</td>
-						<td>Dirección 1</td>
-						<td>Ciudad 1</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
+						<td>tel 1</td>
+						<td>Doc 1</td>
+						<td>Fecha 1</td>
+						<td>pago 1</td>
+                        <td>pago 1</td>
+						<td> <a href="editarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Editar</a></td>
+                        <td> <a href="#" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Eliminar</a></td>
 					</tr>
 					<tr>
-						<td>Nombre 2</td>
-						<td>Deporte 2</td>
-						<td>Teléfono 2</td>
-						<td>Dirección 2</td>
-						<td>Ciudad 2</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
-					</tr>
+                        <td>Nombre 2</td>
+						<td>tel 2</td>
+						<td>Doc 2</td>
+						<td>Fecha 2</td>
+						<td>pago 2</td>
+                        <td>pago 2</td>
+						<td> <a href="editarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Editar</a></td>
+                        <td> <a href="#" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Eliminar</a></td>
+                    </tr>
 					<tr>
-						<td>Nombre 2</td>
-						<td>Deporte 2</td>
-						<td>Teléfono 2</td>
-						<td>Dirección 2</td>
-						<td>Ciudad 2</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
+                        <td>Nombre 3</td>
+						<td>tel 3</td>
+						<td>Doc 3</td>
+						<td>Fecha 3</td>
+						<td>pago 3</td>
+                        <td>pago 3</td>
+						<td> <a href="editarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Editar</a></td>
+                        <td> <a href="#" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Eliminar</a></td>
 					</tr>
 				</tbody>
 			</table>

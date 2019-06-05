@@ -23,7 +23,8 @@
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 
   <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
@@ -59,7 +60,7 @@
 	<!-- Page header section start -->
 	<section class="page-header-section set-bg" data-setbg="img/header.jpg">
 		<div class="container">
-			<h1 class="header-title">Buscar Escenarios<span>.</span></h1>
+			<h1 class="header-title">Bienvenido<span>.</span></h1>
 		</div>
 	</section>
 	<!-- Page header section end -->
@@ -69,44 +70,8 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th><h1>Nombre</h1></th>
-						<th><h1>Deporte</h1></th>
-						<th><h1>Dirección</h1></th>
-						<th><h1>Teléfono</h1></th>
-						<th><h1>Ciudad</h1></th>
-						<th><h1>Reserva</h1></th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Nombre 1</td>
-						<td>Deporte 1</td>
-						<td>Teléfono 1</td>
-						<td>Dirección 1</td>
-						<td>Ciudad 1</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
-					</tr>
-					<tr>
-						<td>Nombre 2</td>
-						<td>Deporte 2</td>
-						<td>Teléfono 2</td>
-						<td>Dirección 2</td>
-						<td>Ciudad 2</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
-					</tr>
-					<tr>
-						<td>Nombre 2</td>
-						<td>Deporte 2</td>
-						<td>Teléfono 2</td>
-						<td>Dirección 2</td>
-						<td>Ciudad 2</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
-					</tr>
-				</tbody>
-			</table>
+        <a href="consultarReservas.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Consultar Reservas</a>
+		<a href="realizarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Realizar Reservas</a>
 		</div>
 	</section>
 	<!-- Intro section end -->
