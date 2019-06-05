@@ -49,8 +49,8 @@
 			<ul>
 				<li ><a href="index.php">Inicio</a></li>
 				<li><a href="mapa.php"> Mapa </a></li>
-				<li class="active"><a href="consultar.php"> Buscar Escenarios Deportivos</a></li>
-				<li><a href="administrar.php">Administrar Escenarios</a></li>
+				<li ><a href="consultar.php"> Buscar Escenarios Deportivos</a></li>
+				<li class="active"><a href="administrar.php">Administrar Escenarios</a></li>
 			</ul>
 		</nav>
 	</header>

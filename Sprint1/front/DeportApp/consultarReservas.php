@@ -48,8 +48,8 @@
 			<ul>
 				<li ><a href="index.php">Inicio</a></li>
 				<li><a href="mapa.php"> Mapa </a></li>
-				<li class="active"><a href="consultar.php"> Buscar Escenarios Deportivos</a></li>
-				<li><a href="administrar.php">Administrar Escenarios</a></li>
+				<li ><a href="consultar.php"> Buscar Escenarios Deportivos</a></li>
+				<li class="active"><a href="administrar.php">Administrar Escenarios</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -81,11 +81,11 @@
                         <input class="form-control" type="text" id="Nombre persona" name="Nombre persona" placeholder="Nombre de la Reserva" required> 
                     </div>
                     <div class="col-xs-3"> 
-                        <label for = "Telefono" ><h4>Teléfono:</h4></label>   
+                        <label for = "Fecha" ><h4>Fecha:</h4></label>   
                     </div>
                     <div class="col-xs-3">
                         <br/>
-                        <input class="form-control" type="number" id="Telefono" placeholder="Teléfono" name="Telefono" required>
+                        <input class="form-control" type="datetime-local" id="Fecha" placeholder="" name="Fecha" required>
                     </div>
                 </div>
                 <br>
