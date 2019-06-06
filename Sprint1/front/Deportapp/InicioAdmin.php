@@ -75,7 +75,7 @@
 	<section class="intro-section spad">
 		<div class="container">
         <a href="consultarReservas.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Consultar Reservas</a>
-		<a href="realizarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Realizar Reservas</a>
+		<a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Realizar Reservas</a>
 		</div>
 	</section>
 	<!-- Intro section end -->

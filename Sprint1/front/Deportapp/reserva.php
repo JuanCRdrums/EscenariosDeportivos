@@ -4,9 +4,13 @@ if(isset($_POST["submit"]))
 	    {
 	      require("conexion.php");
 	      $idCone = conexion();
-	      $IdUsuario = 1;
+	      $IdUsuario = 12;
 	      $HorarioInicio = $_POST["HorarioInicio"];
 	      $HorarioFin = $_POST["HorarioFin"];
+	      $Nombre = $_POST["NombrePersona"]; #tengo problema acá
+	      $Telefono = $_POST["Telefono"];
+	      echo $Nombre;
+	      echo $Telefono;
 	      echo $IdUsuario;
 	      echo $HorarioInicio;
 	      echo $HorarioFin;
@@ -14,9 +18,11 @@ if(isset($_POST["submit"]))
 	      //$Escenario = $_POST["Escenario"];
 	      $SQL = "INSERT INTO reserva(IdUsuario, HorarioInicio, HorarioFin) VALUES ('$IdUsuario', '$HorarioInicio', '$HorarioFin')";
 
-	      if(mysqli_query($idCone,$SQL))
+	      $SQL2 = "INSERT INTO usuarios(Nombre, Telefono) VALUES ('$Nombre', '$Telefono')"; #no he podido hacer que se almacenen estos datos
+
+	      if(mysqli_query($idCone,$SQL) and mysqli_query($idCone,$SQL2))
 	      {
-	        header('location: mapa.php');
+	        header('location: mapa.php'); #No está dirigiendose a mapa.php
 	      }
 	      /*else
 	      {
@@ -106,14 +112,14 @@ if(isset($_POST["submit"]))
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="text" id="Nombre persona" name="Nombre persona" placeholder="Nombre:" required> 
+						<input class="form-control" type="text" id="Nombre" name="Nombre" placeholder="Nombre:" required> 
 					</div>
 					<div class="col-xs-3"> 
 						<label for = "Telefono" ><h4>Teléfono:</h4></label>   
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="number" id="Telefono" placeholder="Teléfono" name="Telefono" required>
+						<input class="form-control" type="text" id="Telefono" placeholder="Teléfono" name="Telefono" required>
 					</div>
 				</div>
 				<br>
