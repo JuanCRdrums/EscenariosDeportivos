@@ -1,22 +1,31 @@
   <?php
   	session_start();
-  	session_unset();
-  	session_destroy();
+  	if(isset($_SESSION["usuario"]))
+  	{
+  		header('location: inicioAdmin.php');
+  	}
     if(isset($_POST["submit"]))
     {
       require("conexion.php");
       $idCone = conexion();
       $Usuario = $_POST["Usuario"];
       $Clave = $_POST["Pass"];
-      $SQL = "SELECT * FROM administrador WHERE (usuario LIKE '$Usuario') and (pass LIKE '$Clave')";
+      echo $Usuario;
+      $SQL = "SELECT * FROM administrador WHERE (usuario LIKE '$Usuario') and (contrasena LIKE '$Clave')";
       $exito = False;
       $registro = mysqli_query($idCone,$SQL);
-      $Fila = mysqli_fetch_array($registro);
+      $cont = 0;
+      while($Fila = mysqli_fetch_array($registro))
+      {
+      	$cont++;
+      }
 
-
-      header('location: inicioAdmin.php');
-        session_start();
-        $_SESSION["usuario"] = $Usuario;
+      if($cont > 0)//hay algún usuario con ese nombre y contraseña
+      {
+      	header('location: inicioAdmin.php');
+      	session_start();
+      	$_SESSION["usuario"] = $Usuario;
+      }
 
       /*if($Fila == "")
       {

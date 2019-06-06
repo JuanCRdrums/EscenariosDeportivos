@@ -1,20 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 3.5.1
+-- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-06-2019 a las 12:22:48
--- Versión del servidor: 5.7.14
--- Versión de PHP: 5.6.25
+-- Servidor: localhost
+-- Tiempo de generación: 06-06-2019 a las 11:57:57
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `escenariosdeportivos`
@@ -26,10 +26,20 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `administrador`
 --
 
-CREATE TABLE `administrador` (
+DROP TABLE IF EXISTS `administrador`;
+CREATE TABLE IF NOT EXISTS `administrador` (
   `usuario` text NOT NULL,
-  `contrasena` varchar(20) NOT NULL
+  `contraseña` varchar(20) NOT NULL,
+  PRIMARY KEY (`usuario`(50))
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `administrador`
+--
+
+INSERT DELAYED IGNORE INTO `administrador` (`usuario`, `contraseña`) VALUES
+('felipe', ''),
+('bravo', '');
 
 -- --------------------------------------------------------
 
@@ -37,14 +47,17 @@ CREATE TABLE `administrador` (
 -- Estructura de tabla para la tabla `escenario`
 --
 
-CREATE TABLE `escenario` (
-  `Id_Escenario` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `escenario`;
+CREATE TABLE IF NOT EXISTS `escenario` (
+  `Id_Escenario` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `Disponible` tinyint(1) NOT NULL,
   `Deporte` text NOT NULL,
   `Dimensiones` text NOT NULL,
   `Caracteristicas` text NOT NULL,
-  `Predio` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `Predio` text NOT NULL,
+  PRIMARY KEY (`Id_Escenario`),
+  UNIQUE KEY `Predio` (`Predio`(20)) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -52,15 +65,18 @@ CREATE TABLE `escenario` (
 -- Estructura de tabla para la tabla `predio`
 --
 
-CREATE TABLE `predio` (
-  `Id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `predio`;
+CREATE TABLE IF NOT EXISTS `predio` (
+  `Id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `Escenarios` int(20) NOT NULL,
   `Nombre` text NOT NULL,
   `Telefono` text NOT NULL,
   `Responsable` text NOT NULL,
   `HorarioApertura` text NOT NULL,
-  `HorarioCierre` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `HorarioCierre` text NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Escenarios` (`Escenarios`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -68,14 +84,25 @@ CREATE TABLE `predio` (
 -- Estructura de tabla para la tabla `reserva`
 --
 
-CREATE TABLE `reserva` (
-  `Id` bigint(20) UNSIGNED NOT NULL,
-  `HorarioInicio` text NOT NULL,
+DROP TABLE IF EXISTS `reserva`;
+CREATE TABLE IF NOT EXISTS `reserva` (
+  `Id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `IdUsuario` int(50) NOT NULL,
+  `HorarioInicio` datetime NOT NULL,
   `HorarioFin` text NOT NULL,
   `Predio` text,
   `Escenario` text,
-  `IdUsuario` int(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `IdUsuario` (`IdUsuario`) USING BTREE
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `reserva`
+--
+
+INSERT DELAYED IGNORE INTO `reserva` (`Id`, `IdUsuario`, `HorarioInicio`, `HorarioFin`, `Predio`, `Escenario`) VALUES
+(3, 1, '3334-03-31 04:44:00', '0424-03-31T14:03', NULL, NULL),
+(4, 12, '2222-12-11 02:02:00', '2012-02-23T03:03', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -83,70 +110,17 @@ CREATE TABLE `reserva` (
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `Id` bigint(50) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `Id` bigint(50) unsigned NOT NULL AUTO_INCREMENT,
   `Nombre` mediumtext NOT NULL,
-  `Telefono` text NOT NULL,
-  `Email` text,
-  `Ubicacion` varchar(100) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `Telefono` int(25) NOT NULL,
+  `Email` text NOT NULL,
+  `Ubicacion` varchar(100) NOT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `Id` (`Id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `administrador`
---
-ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`usuario`(50));
-
---
--- Indices de la tabla `escenario`
---
-ALTER TABLE `escenario`
-  ADD PRIMARY KEY (`Id_Escenario`),
-  ADD UNIQUE KEY `Predio` (`Predio`(20)) USING BTREE;
-
---
--- Indices de la tabla `predio`
---
-ALTER TABLE `predio`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `Escenarios` (`Escenarios`);
-
---
--- Indices de la tabla `reserva`
---
-ALTER TABLE `reserva`
-  ADD PRIMARY KEY (`Id`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `Id` (`Id`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `escenario`
---
-ALTER TABLE `escenario`
-  MODIFY `Id_Escenario` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `predio`
---
-ALTER TABLE `predio`
-  MODIFY `Id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `reserva`
---
-ALTER TABLE `reserva`
-  MODIFY `Id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

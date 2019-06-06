@@ -4,25 +4,34 @@ if(isset($_POST["submit"]))
 	    {
 	      require("conexion.php");
 	      $idCone = conexion();
-	      $IdUsuario = 12;
+	      $IdUsuario = $_POST["DocIden"];
 	      $HorarioInicio = $_POST["HorarioInicio"];
 	      $HorarioFin = $_POST["HorarioFin"];
-	      $Nombre = $_POST["NombrePersona"]; #tengo problema acá
+	      $Nombre = $_POST["Nombre"]; 
 	      $Telefono = $_POST["Telefono"];
-	      echo $Nombre;
-	      echo $Telefono;
-	      echo $IdUsuario;
 	      echo $HorarioInicio;
-	      echo $HorarioFin;
 	      //$Predio = $_POST["Predio"];
 	      //$Escenario = $_POST["Escenario"];
 	      $SQL = "INSERT INTO reserva(IdUsuario, HorarioInicio, HorarioFin) VALUES ('$IdUsuario', '$HorarioInicio', '$HorarioFin')";
-
-	      $SQL2 = "INSERT INTO usuarios(Nombre, Telefono) VALUES ('$Nombre', '$Telefono')"; #no he podido hacer que se almacenen estos datos
+	      $SQLExiste = "SELECT * FROM usuarios WHERE (Id LIKE '$IdUsuario')";//verificación de que el usuario ya esté registrado
+	      $cont = 0;
+	      $registro = mysqli_query($idCone,$SQLExiste);
+	      while($Fila = mysqli_fetch_array($registro))
+	      {
+	      	$cont++;
+	      }
+	      if($cont == 0)
+	      {
+	      	$SQL2 = "INSERT INTO usuarios(Id, Nombre, Telefono) VALUES ('$IdUsuario','$Nombre', '$Telefono')";
+	      }
+	      else
+	      {
+	      	$SQL2 = "SELECT * FROM reserva";
+	      }
 
 	      if(mysqli_query($idCone,$SQL) and mysqli_query($idCone,$SQL2))
 	      {
-	        header('location: mapa.php'); #No está dirigiendose a mapa.php
+	        header('location: mapa.php'); 
 	      }
 	      /*else
 	      {
