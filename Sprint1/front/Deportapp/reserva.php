@@ -1,5 +1,28 @@
 <?php
+session_start();
+if(isset($_POST["submit"]))
+	    {
+	      require("conexion.php");
+	      $idCone = conexion();
+	      $IdUsuario = 1;
+	      $HorarioInicio = $_POST["HorarioInicio"];
+	      $HorarioFin = $_POST["HorarioFin"];
+	      echo $IdUsuario;
+	      echo $HorarioInicio;
+	      echo $HorarioFin;
+	      //$Predio = $_POST["Predio"];
+	      //$Escenario = $_POST["Escenario"];
+	      $SQL = "INSERT INTO reserva(IdUsuario, HorarioInicio, HorarioFin) VALUES ('$IdUsuario', '$HorarioInicio', '$HorarioFin')";
 
+	      if(mysqli_query($idCone,$SQL))
+	      {
+	        header('location: mapa.php');
+	      }
+	      /*else
+	      {
+	      	header('location: index.php');
+	      }*/
+	   }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +98,7 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container">
-			<form class="form-horizontal" role = "form" method = "post" action="">
+			<form class="form-horizontal" role = "form" method = "post" action="reserva.php">
 
 				<div class="row">
 					<div class="col-xs-3">
@@ -83,10 +106,10 @@
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="text" id="Nombre persona" name="Nombre persona" placeholder="Nombre de la Reserva" required> 
+						<input class="form-control" type="text" id="Nombre persona" name="Nombre persona" placeholder="Nombre:" required> 
 					</div>
 					<div class="col-xs-3"> 
-						<label for = "Telefono" ><h4>fecha:</h4></label>   
+						<label for = "Telefono" ><h4>Teléfono:</h4></label>   
 					</div>
 					<div class="col-xs-3">
 						<br/>
@@ -106,11 +129,19 @@
 
 				<div class="row">
 					<div class="col-xs-3">
-						<label for = "Dia"><h4>Dia:</h4></label> 
+						<label for = "HorarioInicio"><h4>Horario de inicio:</h4></label> 
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="datetime-local" id="Fecha" name="Fecha"  required> 
+						<input class="form-control" type="datetime-local" id="HorarioInicio" name="HorarioInicio"  required> 
+					</div>
+
+					<div class="col-xs-3">
+						<label for = "HorarioFin"><h4>Horario de finalización:</h4></label> 
+					</div>
+					<div class="col-xs-3">
+						<br/>
+						<input class="form-control" type="datetime-local" id="HorarioFin" name="HorarioFin"  required> 
 					</div>
 			
 					<div class="form-check col-xs-3">

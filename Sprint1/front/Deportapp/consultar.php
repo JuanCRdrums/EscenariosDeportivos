@@ -1,5 +1,27 @@
 <?php
+	session_start();
+	    if(isset($_POST["submit"]))
+	    {
+	      require("conexion.php");
+	      $idCone = conexion();
+	      $IdUsuario = 1;
+	      $fecha = $_POST["fecha"];
+	      $HoraInicio = $_POST["HoraInicio"];
+	      $HorarioFin = $_POST["HorarioFin"];
+	      $Predio = $_POST["Predio"];
+	      $Escenario = $_POST["Escenario"];
+	      $HoraInicio = $_POST["NumeroReserva"];
+	      $SQL = "INSERT INTO reserva(IdUsuario, fecha, HoraInicio, HorarioFin, Predio, Escenario) VALUES ($IdUsuario, $fecha, $HoraInicio, $HorarioFin, $Predio, $Escenario)";
 
+	      if(mysqli_query($idCone,$SQL))
+	      {
+	        $mensaje = "registro exitoso";
+	      }
+	      else
+	      {
+	        $mensaje = "Error ingresando el cliente";
+	      }
+	    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
