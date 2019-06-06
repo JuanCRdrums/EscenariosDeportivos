@@ -2,25 +2,21 @@
 session_start();
 	    if(isset($_POST["submit"]))
 	    {
+
 	      require("conexion.php");
 	      $idCone = conexion();
-	      $IdUsuario = 1;
-	      #$fecha = $_POST["fecha"];
-	      $HoraInicio = $_POST["HoraInicio"];
-	      $HorarioFin = $_POST["HorarioFin"];
-	      #$Predio = $_POST["Predio"];
-	      #$Escenario = $_POST["Escenario"];
-	      #$HoraInicio = $_POST["NumeroReserva"];
-	      $SQL = "INSERT INTO reserva(IdUsuario, HoraInicio, HorarioFin) VALUES ($IdUsuario, '$HoraInicio', '$HorarioFin')";
-
-	      if(mysqli_query($idCone,$SQL))
+	      $Nombre = $_POST["Nombre"];
+	      $Fecha = $_POST["Fecha"];
+	      echo $_POST["Fecha"];
+	      $ConsultaId = " SELECT * from usuarios where (Nombre LIKE '$Nombre')";
+	      $registroId = mysqli_query($idCone,$ConsultaId);
+	      $Id = "";
+	      while($Fila = mysqli_fetch_array($registroId))
 	      {
-	        $mensaje = "registro exitoso";
+	      	$Id = $Fila["Id"];
+	      	$Telefono = $Fila["Telefono"];
 	      }
-	      else
-	      {
-	        $mensaje = "Error ingresando el cliente";
-	      }
+	      $ConsultaTabla = "SELECT * FROM reserva where (IdUsuario like '$Id' or HorarioInicio like '$Fecha')";
 	    }
 ?>
 <!DOCTYPE html>
@@ -104,14 +100,14 @@ session_start();
                     </div>
                     <div class="col-xs-3">
                         <br/>
-                        <input class="form-control" type="text" id="Nombre persona" name="Nombre persona" placeholder="Nombre de la Reserva" required> 
+                        <input class="form-control" type="text" id="Nombre" name="Nombre" placeholder="Nombre de la Reserva"> 
                     </div>
                     <div class="col-xs-3"> 
                         <label for = "Fecha" ><h4>Fecha:</h4></label>   
                     </div>
                     <div class="col-xs-3">
                         <br/>
-                        <input class="form-control" type="datetime-local" id="Fecha" placeholder="" name="Fecha" required>
+                        <input class="form-control" type="datetime-local" id="Fecha" placeholder="" name="Fecha">
                     </div>
                 </div>
                 <br>
@@ -126,47 +122,49 @@ session_start();
             <table class="table table-hover">
 				<thead>
 					<tr>
-						<th><h3>Nombre de Reserva</h3></th>
+						<th><h3>Nombre del usuario</h3></th>
 						<th><h3>Telefono</h3></th>
 						<th><h3>Documento de Identificacion</h3></th>
-						<th><h3>Dia</h3></th>
-						<th><h3>Pago sitio</h3></th>
-						<th><h3>Pago linea</h3></th>
+						<th><h3>Hora de Inicio</h3></th>
+						<th><h3>Hora de fin</h3></th>
                         <th><h3>Editar</h3></th>
                         <th><h3>Eliminar</h3></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Nombre 1</td>
-						<td>tel 1</td>
-						<td>Doc 1</td>
-						<td>Fecha 1</td>
-						<td>pago 1</td>
-                        <td>pago 1</td>
-						<td> <a href="editarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Editar</a></td>
-                        <td> <a href="#" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Eliminar</a></td>
-					</tr>
-					<tr>
-                        <td>Nombre 2</td>
-						<td>tel 2</td>
-						<td>Doc 2</td>
-						<td>Fecha 2</td>
-						<td>pago 2</td>
-                        <td>pago 2</td>
-						<td> <a href="editarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Editar</a></td>
-                        <td> <a href="#" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Eliminar</a></td>
-                    </tr>
-					<tr>
-                        <td>Nombre 3</td>
-						<td>tel 3</td>
-						<td>Doc 3</td>
-						<td>Fecha 3</td>
-						<td>pago 3</td>
-                        <td>pago 3</td>
-						<td> <a href="editarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Editar</a></td>
-                        <td> <a href="#" class="btn btn-danger btn-lg" role="button" aria-pressed="true">Eliminar</a></td>
-					</tr>
+					<?php
+					if(isset($_POST["submit"]))
+					{
+						$registroTabla = mysqli_query($idCone,$ConsultaTabla);
+						while($Fila = mysqli_fetch_array($registroTabla))
+						{
+							$ConsultaTelefono = " SELECT Telefono from usuarios where (Id LIKE '$Fila[IdUsuario]')";
+						      $registroTelefono = mysqli_query($idCone,$ConsultaTelefono);
+						      #$Id = "";
+						      while($Fila2 = mysqli_fetch_array($registroTelefono))
+						      {
+						      	$Telefono = $Fila2["Telefono"];
+						      }
+
+						$ConsultaIdUsuario = "SELECT * from usuarios where(Id LIKE '$Fila[IdUsuario]')";
+					       $registroIdUsuario = mysqli_query($idCone,$ConsultaIdUsuario);
+					      #$Id = "";
+					      while($Fila3 = mysqli_fetch_array($registroIdUsuario))
+					      {
+					      	$Id = $Fila3["Id"];
+					      	$Nombre = $Fila3["Nombre"];
+					      }
+							echo "<td>$Nombre</td>";
+							echo "<td>$Telefono</td>";
+							echo "<td>$Id</td>";
+							echo "<td>$Fila[HorarioInicio]</td>";
+							echo "<td>$Fila[HorarioFin]</td>";
+							echo "<td> <a href='editarReserva.php' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Editar</a></td>";
+							echo "<td> <a href='#' class='btn btn-danger btn-lg' role='button' aria-pressed='true'>Eliminar</a></td>";
+						}
+					}
+					?>
+					
 				</tbody>
 			</table>
 		</div>
