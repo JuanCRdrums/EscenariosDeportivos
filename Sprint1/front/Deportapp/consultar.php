@@ -1,28 +1,4 @@
-<?php
-	session_start();
-	    if(isset($_POST["submit"]))
-	    {
-	      require("conexion.php");
-	      $idCone = conexion();
-	      $IdUsuario = 1;
-	      #$fecha = $_POST["fecha"];
-	      $HoraInicio = $_POST["HoraInicio"];
-	      $HorarioFin = $_POST["HorarioFin"];
-	      #$Predio = $_POST["Predio"];
-	      #$Escenario = $_POST["Escenario"];
-	      #$HoraInicio = $_POST["NumeroReserva"];
-	      $SQL = "INSERT INTO reserva(IdUsuario, HoraInicio, HorarioFin) VALUES ($IdUsuario, '$HoraInicio', '$HorarioFin')";
 
-	      if(mysqli_query($idCone,$SQL))
-	      {
-	        $mensaje = "registro exitoso";
-	      }
-	      else
-	      {
-	        $mensaje = "Error ingresando el cliente";
-	      }
-	    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,33 +80,47 @@
 						<th><h1>Teléfono</h1></th>
 						<th><h1>Ciudad</h1></th>
 						<th><h1>Reserva</h1></th>
+						<!--<td> <a href="consultar.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Consultar</a></td>-->
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Nombre 1</td>
-						<td>Deporte 1</td>
-						<td>Teléfono 1</td>
-						<td>Dirección 1</td>
-						<td>Ciudad 1</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
-					</tr>
-					<tr>
-						<td>Nombre 2</td>
-						<td>Deporte 2</td>
-						<td>Teléfono 2</td>
-						<td>Dirección 2</td>
-						<td>Ciudad 2</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
-					</tr>
-					<tr>
-						<td>Nombre 2</td>
-						<td>Deporte 2</td>
-						<td>Teléfono 2</td>
-						<td>Dirección 2</td>
-						<td>Ciudad 2</td>
-						<td> <a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Reservar</a></td>
-					</tr>
+					<?php
+						require("conexion.php");
+						$idCone = conexion();
+					   	
+						$ConsultaPredio = "SELECT * from predio";
+					   	$registroPredio = mysqli_query($idCone,$ConsultaPredio);
+
+					      #$Id = "";
+					    $ConsultaEscenario = "SELECT * from escenario";
+						$registroEscenario = mysqli_query($idCone,$ConsultaEscenario);
+					      while($Fila2 = mysqli_fetch_array($registroEscenario))
+					      {
+					   		$Deporte = $Fila2["Deporte"];
+					      	$Direccion = $Fila2["Predio"];	
+
+					      		
+					      }
+
+
+					      while($Fila = mysqli_fetch_array($registroPredio))
+					      {
+					      	$Nombre = $Fila["Nombre"];
+					      	$Telefono = $Fila["Telefono"];
+					      	$Deporte = $Fila2["Deporte"];
+					      	$Direccion = $Fila2["Predio"];
+					      	echo "<tr>";
+					      	echo "<td>".$Fila["Nombre"]."</td>";
+					      	echo "<td>".$Fila2["Deporte"]."</td>";
+					      	echo "<td>".$Fila2["Direccion"]."</td>";
+					      	echo "<td>".$Fila["Telefono"]."</td>";
+					      	echo "<td>Ciudad</td>";
+					      	echo "<td> <a href='reserva.php' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Reservar</a></td>";
+					      
+					      }
+						
+						
+					?>
 				</tbody>
 			</table>
 		</div>
@@ -149,11 +139,11 @@
 		<div class="footer-social">
 		<br/><br/><br/><br/>
 			<div class="social-links">
-				<a href="#"><i class="fa fa-pinterest"></i></a>
-				<a href="#"><i class="fa fa-linkedin"></i></a>
-				<a href="#"><i class="fa fa-instagram"></i></a>
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="https://co.pinterest.com"><i class="fa fa-pinterest"></i></a>
+				<a href="https://co.linkedin.com"><i class="fa fa-linkedin"></i></a>
+				<a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
+				<a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+				<a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
 			</div>
 		</div>
 		<div class="container">

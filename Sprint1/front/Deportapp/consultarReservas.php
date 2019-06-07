@@ -159,7 +159,7 @@ session_start();
 							echo "<td>$Id</td>";
 							echo "<td>$Fila[HorarioInicio]</td>";
 							echo "<td>$Fila[HorarioFin]</td>";
-							echo "<td> <a href='editarReserva.php' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Editar</a></td>";
+							echo "<td> <a href='realizarReserva.php' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Editar</a></td>";//reemplazo por realizar reserva, no tuve en cuenta la opcion editar
 							echo "<td> <a href='#' class='btn btn-danger btn-lg' role='button' aria-pressed='true'>Eliminar</a></td>";
 						}
 					}
@@ -183,11 +183,11 @@ session_start();
 		<div class="footer-social">
 		<br/><br/><br/><br/>
 			<div class="social-links">
-				<a href="#"><i class="fa fa-pinterest"></i></a>
-				<a href="#"><i class="fa fa-linkedin"></i></a>
-				<a href="#"><i class="fa fa-instagram"></i></a>
-				<a href="#"><i class="fa fa-facebook"></i></a>
-				<a href="#"><i class="fa fa-twitter"></i></a>
+				<a href="https://co.pinterest.com"><i class="fa fa-pinterest"></i></a>
+				<a href="https://co.linkedin.com"><i class="fa fa-linkedin"></i></a>
+				<a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a>
+				<a href="https://www.facebook.com"><i class="fa fa-facebook"></i></a>
+				<a href="https://twitter.com"><i class="fa fa-twitter"></i></a>
 			</div>
 		</div>
 		<div class="container">
