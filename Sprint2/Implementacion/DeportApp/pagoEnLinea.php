@@ -34,7 +34,7 @@
 	<![endif]-->
 
 </head>
-<body>
+<body >
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
@@ -91,6 +91,15 @@
                     <div class="col-xs-6" >
                         <br/>
                         <input class="form-control" type="text" readonly id="Precio" placeholder="precio" name="Precio">
+                    </div>
+                    
+				</div>
+				<br>
+                <div  class = "row">
+                    <div class="col-xs-12" id="paypalbuttons" align="center"> 
+						<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+						<script >paypal.Buttons().render('#paypalbuttons');</script>  
+                    
                     </div>
                     
 				</div>
