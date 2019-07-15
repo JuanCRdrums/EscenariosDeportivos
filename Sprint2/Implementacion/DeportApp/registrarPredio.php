@@ -4,6 +4,38 @@
 	{
 		header("location: administrar.php");
 	}
+	if (isset($_POST["submit"])) {
+	    require("conexion.php");
+		$idCone = conexion();
+		$Nombre = $_POST["Nombre"];
+	    $Telefono = $_POST["Telefono"];
+	    $Encargado = $_POST["Encargado"];
+	    $HorarioApertura = $_POST["HorarioApertura"];
+	    $HorarioCierre = $_POST["HorarioCierre"];
+	    echo $HorarioApertura
+
+	    $SQL = "INSERT INTO predio(Nombre, Telefono, Encargado, HorarioApertura, HorarioCierre) VALUES ('$Nombre', '$Telefono', '$Encargado','HorarioApertura','HorarioCierre')";
+
+	    $SQLExiste = "SELECT * FROM predio WHERE (Nombre LIKE '$Nombre')";//verificación de que el usuario ya esté registrado
+	    $cont = 0;
+	    $registro = mysqli_query($idCone,$SQLExiste);
+	    while($Fila = mysqli_fetch_array($registro))
+	    {
+	    	$cont++;
+	    }
+	    if($cont == 0)
+	    {
+	    	$SQL2 = "INSERT INTO predio(Nombre, Telefono, Encargado, HorarioApertura, HorarioCierre) VALUES ('$Nombre', '$Telefono', '$Encargado','HorarioApertura','HorarioCierre')";
+	    }
+	    else
+	    {
+	    	$SQL2 = "SELECT * FROM predio";
+	    }
+	    if(mysqli_query($idCone,$SQL) and mysqli_query($idCone,$SQL2))
+	    {
+	    	header('location: mapa.php'); 
+	    }
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">

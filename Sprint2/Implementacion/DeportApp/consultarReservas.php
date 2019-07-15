@@ -18,6 +18,13 @@ session_start();
 	      }
 	      $ConsultaTabla = "SELECT * FROM reserva where (IdUsuario like '$Id' or HorarioInicio like '$Fecha')";
 	    }
+	    if(isset($_POST[""]))
+	    {
+	      require("conexion.php");
+	      $idCone = conexion();
+	      #$ConsultaId = " DELETE from usuarios where (Nombre LIKE '$Nombre')";
+	      $ConsultaTabla = "DELETE FROM reserva where (IdUsuario like '$Id' or HorarioInicio like '$Fecha')";
+	    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
