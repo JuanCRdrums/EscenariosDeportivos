@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-07-2019 a las 15:39:24
+-- Tiempo de generación: 16-07-2019 a las 22:13:22
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -85,7 +85,7 @@ CREATE TABLE `reserva` (
 --
 
 CREATE TABLE `usuarios` (
-  `Id` bigint(50) UNSIGNED NOT NULL,
+  `Id_Usuario` bigint(50) UNSIGNED NOT NULL,
   `Nombre` mediumtext NOT NULL,
   `Telefono` text NOT NULL,
   `Email` text,
@@ -126,8 +126,8 @@ ALTER TABLE `reserva`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `Id` (`Id`);
+  ADD PRIMARY KEY (`Id_Usuario`),
+  ADD UNIQUE KEY `Id` (`Id_Usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
