@@ -12,9 +12,10 @@
 	    $Ancho = $_POST["Ancho"];
 	    $Alto = $_POST["Alto"];
 	    $CaracteristicasVarias = $_POST["CaracteristicasVarias"];
-	    echo $HorarioApertura;
-
-	    $SQL = "INSERT INTO escenario(predio,Deporte,Ancho,Alto,CaracteristicasVarias) VALUES ('$predio','$Deporte','$Ancho','$Alto','$CaracteristicasVarias')";
+	    $Disponible = "1";
+	    echo $predio;
+	    #
+	    $SQL = "INSERT INTO escenario(Caracteristicas,Deporte,predio,Ancho,Alto,Disponible) VALUES ('$CaracteristicasVarias','$Deporte','$predio','$Ancho','$Alto','$Disponible')";
 
 	    $SQLExiste = "SELECT * FROM escenario WHERE (predio LIKE '$predio')";//verificación de que el usuario ya esté registrado
 	    $cont = 0;
@@ -25,7 +26,7 @@
 	    }
 	    if($cont == 0)
 	    {
-	    	$SQL2 = "INSERT INTO escenario(predio,Deporte,Ancho,Alto,CaracteristicasVarias) VALUES ('$predio','$Deporte','$Ancho','$Alto','$CaracteristicasVarias')";
+	    	$SQL2 = "INSERT INTO escenario(Caracteristicas,Deporte,predio,Ancho,Alto,Disponible) VALUES ('$CaracteristicasVarias','$Deporte','$predio','$Ancho','$Alto','$Disponible')";
 	    }
 	    else
 	    {
@@ -116,14 +117,9 @@
                         <label for = "predio"><h4> Predio al que pertenece:</h4></label> 
                     </div>
                     <div class="col-xs-6">
-                        <br/>
-                        <select class="form-control" id="predios">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                    	<br/>
+                        <input class="form-control" type="text" id="predio" placeholder="predio" name="predio">
+                       
                     </div>
                     
                 </div>

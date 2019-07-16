@@ -12,9 +12,11 @@
 	    $Encargado = $_POST["Encargado"];
 	    $HorarioApertura = $_POST["HorarioApertura"];
 	    $HorarioCierre = $_POST["HorarioCierre"];
+	    $Escenarios=$_POST["Escenarios"];
+	    $Ubicacion="centro";
 	    echo $HorarioApertura;
 
-	    $SQL = "INSERT INTO predio(Nombre, Telefono, Encargado, HorarioApertura, HorarioCierre) VALUES ('$Nombre', '$Telefono', '$Encargado','HorarioApertura','HorarioCierre')";
+	    $SQL = "INSERT INTO predio(Nombre, Telefono, Responsable, HorarioApertura, HorarioCierre, Escenarios, Ubicacion) VALUES ('$Nombre', '$Telefono', '$Encargado','$HorarioApertura','$HorarioCierre','$Escenarios','$Ubicacion')";
 
 	    $SQLExiste = "SELECT * FROM predio WHERE (Nombre LIKE '$Nombre')";//verificación de que el usuario ya esté registrado
 	    $cont = 0;
@@ -25,7 +27,7 @@
 	    }
 	    if($cont == 0)
 	    {
-	    	$SQL2 = "INSERT INTO predio(Nombre, Telefono, Encargado, HorarioApertura, HorarioCierre) VALUES ('$Nombre', '$Telefono', '$Encargado','HorarioApertura','HorarioCierre')";
+	    	$SQL2 =  "INSERT INTO predio(Nombre, Telefono, Responsable, HorarioApertura, HorarioCierre, Escenarios, Ubicacion) VALUES ('$Nombre', '$Telefono', '$Encargado','$HorarioApertura','$HorarioCierre','$Escenarios','$Ubicacion')";
 	    }
 	    else
 	    {
@@ -130,6 +132,19 @@
                     <div class="col-xs-6" >
                         <br/>
                         <input class="form-control" type="text" id="Telefono" placeholder="Telefono" name="Telefono">
+                    </div>
+
+                    
+					
+				</div>
+				<br>
+                <div class = "row">
+                    <div class="col-xs-6" align="center"> 
+                        <label for = "Escenarios" ><h4>Escenarios:</h4></label>   
+                    </div>
+                    <div class="col-xs-6" >
+                        <br/>
+                        <input class="form-control" type="text" id="Escenarios" placeholder="Escenarios" name="Escenarios">
                     </div>
 
                     
