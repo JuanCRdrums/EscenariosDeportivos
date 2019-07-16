@@ -1,7 +1,6 @@
 <?php
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +9,13 @@
 	<meta name="description" content="DeportApp - Escenarios Deportivos">
 	<meta name="keywords" content="DeportApp, Escenarios Deportivos, Futbol, Voleibol, UTP">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+	<!-- Favicon -->   
 	<link href="img/favi.png" rel="shortcut icon"/>
 
-
+	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
-
+	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/animate.css"/>
@@ -31,33 +30,20 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
-
+	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+	<![endif]-->
+
 </head>
 <body>
 	
-
-
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
 	
 	
-  
+	<!-- Header section start -->   
 	<header class="header-area">
 		<div class="nav-switch">
 			<i class="fa fa-bars"></i>
@@ -72,70 +58,33 @@
 			</ul>
 		</nav>
 	</header>
+	<!-- Header section end -->   
+
+
+	<!-- Page header section start -->
 	<section class="page-header-section set-bg" data-setbg="img/header.jpg">
 		<div class="container">
 			<h1 class="header-title">Mapa<span>.</span></h1>
 		</div>
 	</section>
-	
-	<!--<section class="intro-section spad">
+	<!-- Page header section end -->
+
+
+
+	<!-- Intro section start -->
+	<section class="intro-section spad">
 		<div class="container" align="center">
 			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23076.175149986695!2d-75.70117335340728!3d4.81205260886676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sco!4v1559374689468!5m2!1ses!2sco" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 		</div>
 	</section>
--->
-
-<div class="container" align="center" id="map"></div>
-    <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 14
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-TWBCPvLgiSdIJd9qJsuVGSz_WITksPM&callback=initMap">
-    </script>
+	<!-- Intro section end -->
 
 
 
 
-	
+
+
+	<!-- Footer section start -->
 	
 	<footer class="footer-section">
 	
@@ -188,16 +137,16 @@
 			</div>
 		</div>
 
-	
+		<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
      <div class="copyright">Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved. </div>
-
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 	</footer>
-	
+	<!-- Footer section end -->
 
 
 
-	
+	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-2.1.4.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/isotope.pkgd.min.js"></script>
@@ -208,74 +157,3 @@
 	<script src="js/main.js"></script>
 </body>
 </html>
-
-<!--
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Geolocation</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 14
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-TWBCPvLgiSdIJd9qJsuVGSz_WITksPM&callback=initMap">
-    </script>
-  </body>
-</html>-->

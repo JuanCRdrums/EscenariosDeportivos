@@ -155,7 +155,7 @@ session_start();
 							echo "<td>$Fila2[HorarioInicio]</td>";
 							echo "<td>$Fila2[HorarioFin]</td>";
 							echo "<td> <a href='editarReserva.php?id=$Fila2[Id]' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Editar</a></td>";//reemplazo por realizar reserva, no tuve en cuenta la opcion editar
-							echo "<td> <a href='consultarReservas.php' class='btn btn-danger btn-lg' role='button' aria-pressed='true'>Eliminar</a></td> </tr>";	
+							echo "<td> <a href='eliminar.php?id=$Fila2[Id]' class='btn btn-danger btn-lg' role='button' aria-pressed='true'>Eliminar</a></td> </tr>";	
 							
 								
 						}
