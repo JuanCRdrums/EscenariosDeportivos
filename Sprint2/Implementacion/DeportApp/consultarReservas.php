@@ -120,7 +120,7 @@ session_start();
                 <br>
                 <div class = "row">
 					<div class="col-xs-11" align="center">
-						<input type="submit"  class="btn btn-primary" id="submit" name="submit" value="Buscar">
+						<input type="submit"  class="btn btn-primary" id="submit" name="submit" value="Busca">
 					</div>
 				</div>
 
@@ -140,46 +140,30 @@ session_start();
 				</thead>
 				<tbody>
 					<?php
-					if(isset($_POST["submit"]))
-					{
-						$registroTabla = mysqli_query($idCone,$ConsultaTabla);
-						while($Fila = mysqli_fetch_array($registroTabla))
+						require("conexion.php");
+						$idCone = conexion();
+						
+						$ConsultarReserva = "SELECT * FROM reserva, usuarios WHERE reserva.IdUsuario like usuarios.Id_Usuario";
+						$registroReserva = mysqli_query($idCone,$ConsultarReserva);
+
+						
+						while($Fila2=mysqli_fetch_array($registroReserva))
 						{
-							$ConsultaTelefono = " SELECT Telefono from usuarios where (Id LIKE '$Fila[IdUsuario]')";
-						      $registroTelefono = mysqli_query($idCone,$ConsultaTelefono);
-						      #$Id = "";
-						      while($Fila2 = mysqli_fetch_array($registroTelefono))
-						      {
-						      	$Telefono = $Fila2["Telefono"];
-						      }
-
-						$ConsultaIdUsuario = "SELECT * from usuarios where(Id LIKE '$Fila[IdUsuario]')";
-					       $registroIdUsuario = mysqli_query($idCone,$ConsultaIdUsuario);
-					      #$Id = "";
-					      while($Fila3 = mysqli_fetch_array($registroIdUsuario))
-					      {
-					      	$Id = $Fila3["Id"];
-					      	$Nombre = $Fila3["Nombre"];
-					      }
-							echo "<td>$Nombre</td>";
-							echo "<td>$Telefono</td>";
-							echo "<td>$Id</td>";
-							echo "<td>$Fila[HorarioInicio]</td>";
-							echo "<td>$Fila[HorarioFin]</td>";
-							echo "<td> <a href='realizarReserva.php' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Editar</a></td>";//reemplazo por realizar reserva, no tuve en cuenta la opcion editar
-							echo "<td> <a href='consultarReservas.php' class='btn btn-danger btn-lg' role='button' aria-pressed='true'>Eliminar</a></td>";
+							echo "<tr><td>$Fila2[Nombre]</td>";
+							echo "<td>$Fila2[Telefono]</td>";
+							echo "<td>$Fila2[IdUsuario]</td>";
+							echo "<td>$Fila2[HorarioInicio]</td>";
+							echo "<td>$Fila2[HorarioFin]</td>";
+							echo "<td> <a href='editarReserva.php?id=$Fila2[Id]' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Editar</a></td>";//reemplazo por realizar reserva, no tuve en cuenta la opcion editar
+							echo "<td> <a href='consultarReservas.php' class='btn btn-danger btn-lg' role='button' aria-pressed='true'>Eliminar</a></td> </tr>";	
+							
+								
 						}
-					}
-					?>
 
-					<?php
-						if(isset($_POST["submit"]))
-					    {
-					      require("conexion.php");
-					      $idCone = conexion();
-					      #$ConsultaId = " DELETE from usuarios where (Nombre LIKE '$Nombre')";
-					      $ConsultaTabla = "DELETE FROM reserva where (IdUsuario like '$Id' or HorarioInicio like '$Fecha')";
-					    }
+
+						
+
+
 					?>
 
 					

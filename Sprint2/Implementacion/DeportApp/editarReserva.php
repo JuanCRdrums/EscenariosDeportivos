@@ -1,6 +1,44 @@
 <?php
+  session_start();
+  if(!(isset($_SESSION["usuario"])))
+	header("location: administrar.php");
+	$mensaje = "";
+    require("conexion.php");
+    $idCone = conexion();
+    if(isset($_POST["submit"]))
+    {
+		
+	  $id=$_REQUEST['id'];
+	  $HorarioInicio=$_POST['HorarioInicio'];
+	  $HorarioFin=$_POST['HorarioFin'];
+	  $Telefono=$_POST['Telefono'];
+	  $IdUsuario=$_POST['DocIden'];
 
-?>
+      $SQL2 = "SELECT * FROM reserva, usuarios WHERE reserva.Id like $id and reserva.IdUsuario like usuarios.Id_Usuario";
+      $Registro2 = mysqli_query($idCone,$SQL2);
+      $Fila2 = mysqli_fetch_array($Registro2);
+      if(sizeof($Fila2)>0)
+      {
+		$SQL = "UPDATE reserva SET Id='$id' , HorarioInicio='$HorarioInicio' , HorarioFin='$HorarioFin' WHERE IdUsuario like $IdUsuario ";
+		
+        if(mysqli_query($idCone,$SQL))
+        {
+          $mensaje = "Reserva Modificada con exito";
+        }
+        else
+        {
+          $mensaje = "Error modificando la reserva";
+        }
+
+      }
+      else
+      {
+        $mensaje = "reserva no encontrada";
+      }
+       
+      
+    }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +112,17 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container">
-			<form class="form-horizontal" role = "form" method = "post" action="">
+			
+			<form class="form-horizontal" role = "form" method = "post" action="editarReserva.php?id=<?php echo $_REQUEST['id']; ?>">
+			<?php
+				$id=$_REQUEST['id'];
+				$SQL1="SELECT * FROM reserva, usuarios WHERE reserva.Id like $id and reserva.IdUsuario like usuarios.Id_Usuario";
+				$Registro = mysqli_query($idCone,$SQL1);
+				$row=mysqli_fetch_array($Registro)
+
+			?>
+
+			
 
 				<div class="row">
 					<div class="col-xs-3">
@@ -82,14 +130,14 @@
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="text" id="Nombre persona" name="Nombre persona" placeholder="Nombre de la Reserva" required> 
+						<input class="form-control" type="text" id="Nombre" name="Nombre" value="<?php echo $row['Nombre']; ?>" required> 
 					</div>
 					<div class="col-xs-3"> 
 						<label for = "Telefono" ><h4>Teléfono:</h4></label>   
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="number" id="Telefono" placeholder="Teléfono" name="Telefono" required>
+						<input class="form-control" type="text" id="Telefono" value="<?php echo $row['Telefono']; ?>" name="Telefono" required>
 					</div>
 				</div>
 				<br>
@@ -99,17 +147,25 @@
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="number" id="DocIden" placeholder="Numero de Documento" name="DocIden" required>
+						<input class="form-control" type="number" id="DocIden" value="<?php echo $row['IdUsuario']; ?>" name="DocIden" required>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-xs-3">
-						<label for = "Dia"><h4>Dia:</h4></label> 
+						<label for = "HorarioInicio"><h4>Horario de inicio:</h4></label> 
 					</div>
 					<div class="col-xs-3">
 						<br/>
-						<input class="form-control" type="datetime-local" id="Fecha" name="Fecha"  required> 
+						<input class="form-control" type="datetime-local" id="HorarioInicio" name="HorarioInicio" value="<?php echo $row['HorarioInicio']; ?>" required> 
+					</div>
+
+					<div class="col-xs-3">
+						<label for = "HorarioFin"><h4>Horario de finalización:</h4></label> 
+					</div>
+					<div class="col-xs-3">
+						<br/>
+						<input class="form-control" type="datetime-local" id="HorarioFin" name="HorarioFin" value="<?php echo $row['HorarioFin']; ?>" required> 
 					</div>
 			
 					<div class="form-check col-xs-3">
@@ -134,7 +190,14 @@
 				<br>
 				<div class = "row">
 					<div class="col-xs-11" align="center">
-						<input type="submit"  class="btn btn-primary" id="submit" name="submit" value="Guardar Cambios">
+					<input type="submit"  class="btn btn-success" id="submit" name="submit" value="Guardar">
+					</div>
+				</div>
+				<div class="form-group">
+				<div class="col-sm-10 col-sm-offset-2">
+					<h5 style="color:black">
+					<?php echo $mensaje; ?> 
+					</h5> 
 					</div>
 				</div>
 
