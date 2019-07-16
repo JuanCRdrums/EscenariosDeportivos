@@ -12,7 +12,7 @@
 	    $Encargado = $_POST["Encargado"];
 	    $HorarioApertura = $_POST["HorarioApertura"];
 	    $HorarioCierre = $_POST["HorarioCierre"];
-	    echo $HorarioApertura
+	    echo $HorarioApertura;
 
 	    $SQL = "INSERT INTO predio(Nombre, Telefono, Encargado, HorarioApertura, HorarioCierre) VALUES ('$Nombre', '$Telefono', '$Encargado','HorarioApertura','HorarioCierre')";
 

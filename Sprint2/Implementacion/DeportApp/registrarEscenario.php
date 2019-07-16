@@ -4,6 +4,38 @@
 	{
 		header("location: administrar.php");
 	}
+	if (isset($_POST["submit"])) {
+	    require("conexion.php");
+		$idCone = conexion();
+		$predio = $_POST["predio"];
+	    $Deporte = $_POST["Deporte"];
+	    $Ancho = $_POST["Ancho"];
+	    $Alto = $_POST["Alto"];
+	    $CaracteristicasVarias = $_POST["CaracteristicasVarias"];
+	    echo $HorarioApertura;
+
+	    $SQL = "INSERT INTO escenario(predio,Deporte,Ancho,Alto,CaracteristicasVarias) VALUES ('$predio','$Deporte','$Ancho','$Alto','$CaracteristicasVarias')";
+
+	    $SQLExiste = "SELECT * FROM escenario WHERE (predio LIKE '$predio')";//verificación de que el usuario ya esté registrado
+	    $cont = 0;
+	    $registro = mysqli_query($idCone,$SQLExiste);
+	    while($Fila = mysqli_fetch_array($registro))
+	    {
+	    	$cont++;
+	    }
+	    if($cont == 0)
+	    {
+	    	$SQL2 = "INSERT INTO escenario(predio,Deporte,Ancho,Alto,CaracteristicasVarias) VALUES ('$predio','$Deporte','$Ancho','$Alto','$CaracteristicasVarias')";
+	    }
+	    else
+	    {
+	    	$SQL2 = "SELECT * FROM escenario";
+	    }
+	    if(mysqli_query($idCone,$SQL) and mysqli_query($idCone,$SQL2))
+	    {
+	    	header('location: mapa.php'); 
+	    }
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
