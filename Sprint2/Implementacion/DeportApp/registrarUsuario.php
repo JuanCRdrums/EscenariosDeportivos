@@ -1,37 +1,34 @@
 <?php
-	session_start();
-	if(!isset($_SESSION["usuario"]))
-	{
-		header("location: administrar.php");
-	} 
-	$mensaje="";
-	if(isset($_POST["submit"]))
-	{
-		require("conexion.php");
+    if (isset($_POST["submit"])) {
+	    require("conexion.php");
 		$idCone = conexion();
-		
-		
-		$Nombre = $_POST['Nombre'];
-		$Escenario = $_POST['Escenario'];
-		$Telefono = $_POST['Telefono'];
-		$IdUsuario = $_POST['DocIden'];
-		$HorarioInicio = $_POST['HorarioInicio'];
-		$HorarioFin = $_POST['HorarioFin'];
+		$Nombre1 = $_POST["Nombre"];
+	    $Telefono = $_POST["Telefono"];
+        $Email = $_POST["Email"];
+        $IdUsuario = $_POST["IdUsuario"];
+	    
 
-		
-		$SQL = "INSERT INTO reserva(HorarioInicio,HorarioFin,Predio,IdUsuario,Escenario) VALUES ('$HorarioInicio', '$HorarioFin', '1', '$IdUsuario', '$Escenario')";
-		
-		if(mysqli_query($idCone,$SQL))
-		{
-			$mensaje = "Reserva ingresada con exito";
-		}
-		else
-		{
-			$mensaje = "Error ingresando la reserva";
-		}
+	    $SQL = "INSERT INTO usuarios(Id_Usuario,Nombre,Telefono,Email) VALUES ('$IdUsuario','$Nombre1','$Telefono','$Email')";
 
-		
-
+	    $SQLExiste = "SELECT * FROM usuarios WHERE (Id_Usuario LIKE '$IdUsuario')";//verificación de que el usuario ya esté registrado
+	    $cont = 0;
+	    $registro = mysqli_query($idCone,$SQLExiste);
+	    while($Fila = mysqli_fetch_array($registro))
+	    {
+	    	$cont++;
+	    }
+	    if($cont == 0)
+	    {
+	    	$SQL2 = "INSERT INTO usuarios(Id_Usuario,Nombre,Telefono,Email) VALUES ('$IdUsuario','$Nombre1','$Telefono','$Email')";
+	    }
+	    else
+	    {
+	    	$SQL2 = "SELECT * FROM usuarios";
+	    }
+	    if(mysqli_query($idCone,$SQL) and mysqli_query($idCone,$SQL2))
+	    {
+	    	header('location: consultar.php'); 
+	    }
 	}
 
 ?>
@@ -99,7 +96,7 @@
 	<!-- Page header section start -->
 	<section class="page-header-section set-bg" data-setbg="img/header.jpg">
 		<div class="container">
-			<h1 class="header-title">Reserva<span>.</span></h1>
+			<h1 class="header-title">Registrar<span>.</span></h1>
 		</div>
 	</section>
 	<!-- Page header section end -->
@@ -109,95 +106,53 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container">
-		<form class="form-horizontal" role = "form" method = "post" action="realizarReserva.php">
+			<form class="form-horizontal" role = "form" method = "post" action="registrarUsuario.php">
 
-		<div class="row">
-			<div class="col-xs-3">
-				<label for = "Nombre"><h4> Nombre de la reserva:</h4></label> 
-			</div>
-			<div class="col-xs-3">
-				<br/>
-				<input class="form-control" type="text" id="Nombre" name="Nombre" placeholder="Nombre:" required> 
-			</div>
-			<div class="col-xs-3"> 
-				<label for = "Telefono" ><h4>Teléfono:</h4></label>   
-			</div>
-			<div class="col-xs-3">
-				<br/>
-				<input class="form-control" type="text" id="Telefono" placeholder="Teléfono" name="Telefono" required>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-xs-3"> 
-				<label for = "DocInden" ><h4>Documento de Identificación:</h4></label>   
-			</div>
-			<div class="col-xs-3">
-				<br/>
-				<input class="form-control" type="number" id="DocIden" placeholder="Numero de Documento" name="DocIden" required>
-			</div>
-			<div class="col-xs-3"> 
-				<label for = "Escenario" ><h4>Escenario:</h4></label>   
-			</div>
-			<div class="col-xs-3">
-				<br/>
-				<input class="form-control" type="text" id="Escenario" placeholder="Escenario" name="Escenario" required>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-xs-3">
-				<label for = "HorarioInicio"><h4>Horario de inicio:</h4></label> 
-			</div>
-			<div class="col-xs-3">
-				<br/>
-				<input class="form-control" type="datetime-local" id="HorarioInicio" name="HorarioInicio"  required> 
-			</div>
-
-			<div class="col-xs-3">
-				<label for = "HorarioFin"><h4>Horario de finalización:</h4></label> 
-			</div>
-			<div class="col-xs-3">
-				<br/>
-				<input class="form-control" type="datetime-local" id="HorarioFin" name="HorarioFin"  required> 
-			</div>
-
-			<div class="form-check col-xs-3">
-				<input class="form-check-input" type="radio" name="gridRadios" id="pagositio" value="pagositio" checked>
-				<div class="form-check">
-					<label class="form-check-label" for="pagositio">
-						Pago en sitio
-					</label>
-					
-				</div>
-			</div>
-				<div class="form-check col-xs-3">
-					<input class="form-check-input" type="radio" name="gridRadios" id="pagolinea" value="pagolinea">
-					<div class="form-check">
-						<label class="form-check-label" for="pagolinea">
-							Pago en linea
-						</label>
+				<div class="row">
+				<div class="col-xs-3"> 
+						<label for = "DocInden" ><h4>Documento de Identificación:</h4></label>   
 					</div>
-			</div>
-
-		</div>
-		<br>
-		<div class = "row">
-			<div class="col-xs-11" align="center">
-				<input type="submit"  class="btn btn-primary" id="submit" name="submit" value="Guardar">
-			</div>
-		</div>
-	
-			<div class="col-sm-10 col-sm-offset-2">
-				<h5 style="color:black">
-				<?php echo $mensaje; ?> 
-				</h5> 
+					<div class="col-xs-3">
+						<br/>
+						<input class="form-control" type="number" id="IdUsuario" placeholder="IdUsuario" name="IdUsuario" required>
+					</div>
+					<div class="col-xs-3"> 
+						<label for = "Telefono" ><h4>Teléfono:</h4></label>   
+					</div>
+					<div class="col-xs-3">
+						<br/>
+						<input class="form-control" type="number" id="Telefono" placeholder="Teléfono" name="Telefono" required>
+					</div>
 				</div>
-			</div>
+				<br>
+				<div class="row">
+					<div class="col-xs-3"> 
+						<label for = "Nombre" ><h4>Nombre:</h4></label>   
+					</div>
+					<div class="col-xs-3">
+						<br/>
+						<input class="form-control" type="text" id="Nombre" placeholder="Nombre" name="Nombre" required>
+					</div>
+                    <div class="col-xs-3">
+						<label for = "Email"><h4>Email:</h4></label> 
+					</div>
+					<div class="col-xs-3">
+						<br/>
+						<input class="form-control" type="email" id="Email" placeholder="ejemplo@ejemplo.com" name="Email"  required> 
+					</div>
+				</div>
 
+			
+				<br>
+				<div class = "row">
+					<div class="col-xs-11" align="center">
+						<input type="submit"  class="btn btn-primary" id="submit" name="submit" value="Guardar">
+					</div>
+				</div>
 
+				
 
-		</form>
+			</form>
 		
 		</div>
 	</section>

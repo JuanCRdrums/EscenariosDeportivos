@@ -10,12 +10,15 @@
 		$predio = $_POST["predio"];
 	    $Deporte = $_POST["Deporte"];
 	    $Ancho = $_POST["Ancho"];
-	    $Alto = $_POST["Alto"];
+		$Alto = $_POST["Alto"];
+		$Telefono = $_POST["Telefono"];
 	    $CaracteristicasVarias = $_POST["CaracteristicasVarias"];
-	    $Disponible = "1";
-	    echo $predio;
+		$Disponible = "1";
+		$Nombre_Escenario = $_POST["Nombre_Escenario"];
+		$Ubicacion=$_POST["Ubicacion"];
+	    
 	    #
-	    $SQL = "INSERT INTO escenario(Caracteristicas,Deporte,predio,Ancho,Alto,Disponible) VALUES ('$CaracteristicasVarias','$Deporte','$predio','$Ancho','$Alto','$Disponible')";
+	    $SQL = "INSERT INTO escenario(Caracteristicas,Deporte,predio,Ancho,Alto,Disponible,Nombre_Escenario, Ubicacion,Telefono) VALUES ('$CaracteristicasVarias','$Deporte','$predio','$Ancho','$Alto','$Disponible', '$Nombre_Escenario', '$Ubicacion','$Telefono')";
 
 	    $SQLExiste = "SELECT * FROM escenario WHERE (predio LIKE '$predio')";//verificación de que el usuario ya esté registrado
 	    $cont = 0;
@@ -26,16 +29,17 @@
 	    }
 	    if($cont == 0)
 	    {
-	    	$SQL2 = "INSERT INTO escenario(Caracteristicas,Deporte,predio,Ancho,Alto,Disponible) VALUES ('$CaracteristicasVarias','$Deporte','$predio','$Ancho','$Alto','$Disponible')";
+			if(mysqli_query($idCone,$SQL))
+			{
+				header('location: inicioAdmin.php'); 
+			}
 	    }
 	    else
 	    {
-	    	$SQL2 = "SELECT * FROM escenario";
+			echo $predio;
+			$SQL2 = "SELECT * FROM escenario";
 	    }
-	    if(mysqli_query($idCone,$SQL) and mysqli_query($idCone,$SQL2))
-	    {
-	    	header('location: mapa.php'); 
-	    }
+	    
 	}
 ?>
 <!DOCTYPE html>
@@ -113,24 +117,40 @@
             <form class="form-horizontal" role = "form" method = "post" action="">
 
                 <div class="row">
-                    <div class="col-xs-6" align="center">
+                    <div class="col-xs-3" align="center">
                         <label for = "predio"><h4> Predio al que pertenece:</h4></label> 
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-3">
                     	<br/>
                         <input class="form-control" type="text" id="predio" placeholder="predio" name="predio">
                        
                     </div>
+					<div class="col-xs-3" align="center">
+                        <label for = "Nombre_Escenario"><h4> Nombre del Escenario:</h4></label> 
+                    </div>
+                    <div class="col-xs-3">
+                    	<br/>
+                        <input class="form-control" type="text" id="Nombre_Escenario" placeholder="Nombre del Escenario" name="Nombre_Escenario">
+                       
+                    </div>
                     
                 </div>
+				
                 <br>
                 <div class = "row">
-                    <div class="col-xs-6" align="center"> 
+                    <div class="col-xs-3" align="center"> 
                         <label for = "Deporte" ><h4>Deporte:</h4></label>   
                     </div>
-                    <div class="col-xs-6" >
+                    <div class="col-xs-3" >
                         <br/>
                         <input class="form-control" type="text" id="Deporte" placeholder="Deporte" name="Deporte">
+                    </div>
+					<div class="col-xs-3" align="center"> 
+                        <label for = "Ubicacion" ><h4>Ubicación:</h4></label>   
+                    </div>
+                    <div class="col-xs-3" >
+                        <br/>
+                        <input class="form-control" type="text" id="Ubicacion" placeholder="Ubicacion" name="Ubicacion">
                     </div>
 					
 				</div>
@@ -149,6 +169,17 @@
                     </div>
                     
                 </div>
+				<br>
+				<div class = "row">
+                    <div class="col-xs-6" align="center"> 
+                        <label for = "Telefono" ><h4>Telefono:</h4></label>   
+                    </div>
+                    <div class="col-xs-6" >
+                        <br/>
+                        <input class="form-control" id="Telefono" name="Telefono" placeholder="Telefono"></textarea>
+                    </div>
+					
+				</div>
                 <br>
                 <div class = "row">
                     <div class="col-xs-6" align="center"> 

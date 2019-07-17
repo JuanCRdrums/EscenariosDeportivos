@@ -38,7 +38,7 @@
 <div id="preloder">
 		<div class="loader"></div>
 	</div>
-	
+	 
 	
 	<!-- Header section start -->   
 	<header class="header-area">
@@ -71,6 +71,7 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container">
+			<a href='registrarUsuario.php' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Registrarse</a>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -78,7 +79,7 @@
 						<th><h1>Deporte</h1></th>
 						<th><h1>Dirección</h1></th>
 						<th><h1>Teléfono</h1></th>
-						<th><h1>Ciudad</h1></th>
+						<th><h1>Caracteristicas</h1></th>
 						<th><h1>Reserva</h1></th>
 						<th><h1>Compartir</h1></th>
 						<!--<td> <a href="consultar.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Consultar</a></td>-->
@@ -88,37 +89,28 @@
 					<?php
 						require("conexion.php");
 						$idCone = conexion();
-					   	
-						$ConsultaPredio = "SELECT * from predio";
-					   	$registroPredio = mysqli_query($idCone,$ConsultaPredio);
-
-					      #$Id = "";
+					
 					    $ConsultaEscenario = "SELECT * from escenario";
 						$registroEscenario = mysqli_query($idCone,$ConsultaEscenario);
-					      while($Fila2 = mysqli_fetch_array($registroEscenario))
-					      {
-					   		$Deporte = $Fila2["Deporte"];
-					      	$Direccion = $Fila2["Predio"];	
+					    while($Fila = mysqli_fetch_array($registroEscenario))
+						{
+							
+							echo "<tr><td>$Fila[Nombre_Escenario]</td>";
+							echo "<td>$Fila[Deporte]</td>";
+							echo "<td>$Fila[Ubicacion]</td>";
+							echo "<td>$Fila[Telefono]</td>";
+							echo "<td>$Fila[Caracteristicas]</td>";
+							
+							
+							
+							echo "<td> <a href='reserva.php?id=$Fila[Id_Escenario]' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Reservar</a></td>";
+							echo "<td> <a href='http://www.facebook.com' class='btn btn-primary' role='button' aria-pressed='true'>F</a><a href='http://www.twitter.com' class='btn btn-info' role='button' aria-pressed='true'>T</a></td>";	
 
-					      		
-					      }
+							
+						}
 
 
-					      while($Fila = mysqli_fetch_array($registroPredio))
-					      {
-					      	$Nombre = $Fila["Nombre"];
-					      	$Telefono = $Fila["Telefono"];
-					      	$Deporte = $Fila2["Deporte"];
-					      	$Direccion = $Fila2["Predio"];
-					      	echo "<tr>";
-					      	echo "<td>".$Fila["Nombre"]."</td>";
-					      	echo "<td>".$Fila2["Deporte"]."</td>";
-					      	echo "<td>".$Fila2["Direccion"]."</td>";
-					      	echo "<td>".$Fila["Telefono"]."</td>";
-					      	echo "<td>Ciudad</td>";
-					      	echo "<td> <a href='reserva.php' class='btn btn-success btn-lg' role='button' aria-pressed='true'>Reservar</a></td>";
-							echo "<td> <a href='#' class='btn btn-primary' role='button' aria-pressed='true'>F</a><a href='#' class='btn btn-info' role='button' aria-pressed='true'>T</a></td>";
-					      }
+					      
 						
 						
 					?>

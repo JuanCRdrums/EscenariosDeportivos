@@ -78,10 +78,11 @@
 	<!-- Intro section start -->
 	<section class="intro-section spad">
 		<div class="container">
-		<a href="registrarEscenario.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Registrar Escenarios</a>
-		<a href="registrarPredio.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Registrar Predios</a>
-        <a href="consultarReservas.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Consultar Reservas</a>
-		<a href="reserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">Realizar Reservas</a>
+		<a href="registrarPredio.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">1 Registrar Predios</a>
+		<a href="registrarEscenario.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">2 Registrar Escenarios</a>
+        <a href="realizarReserva.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">3 Realizar Reservas</a>
+		<a href="consultarReservas.php" class="btn btn-success btn-lg" role="button" aria-pressed="true">4 Consultar Reservas</a>
+		
 		</div>
 	</section>
 	<!-- Intro section end -->

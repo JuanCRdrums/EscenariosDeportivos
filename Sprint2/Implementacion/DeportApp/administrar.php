@@ -125,7 +125,7 @@
 						<input class="form-control" type="text" id="Usuario" name="Usuario" placeholder="Usuario" required> 
 					</div>
 					<div class="col-xs-3"> 
-						<label for = "password" ><h4>Constraseña:</h4></label>   
+						<label for = "password" ><h4>Contraseña:</h4></label>   
 					</div>
 					<div class="col-xs-3">
 						<br/>
